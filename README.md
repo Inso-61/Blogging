@@ -10,6 +10,7 @@ Reste encore des améliorations :
 - Intégrer TinyMCE sur l'édition des articles
 - Classer les articles par catégories
 - Définir un maximum d'articles par pages
+- Créer une page Contact
 
 Installation : 
 --------------
