@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+{% block navbar %}
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a href="{{ path('homepage') }}" class="blog-nav-item">Accueil</a>
+                <div class="right-nav">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if is_granted('ROLE_ADMIN') %}<a class="blog-nav-item active" href="{{ path('admin') }}">Admin</a>{% endif %}
+
+                        <a class="blog-nav-item" href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a class="blog-nav-item active" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </div>
+            </nav>
+
+        </div>
+    </div>
+{% endblock %}
+{% block body -%}
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Créer un article</h3>
+            </div>
+            <div class="panel-body">
+        {{ form(form) }}
+
+            <ul class="record_actions">
+        <li>
+            <a href="{{ path('article') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul></div></div></div>
+    {% else %}
+<div class="container">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">Accès interdit !</h3>
+            </div>
+            <div class="panel-body">
+                Vous n'avez pas les autorisations nécessaires !
+            </div>
+        </div></div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+blog_article:
+    resource: "@BlogBundle/Resources/config/routing/article.yml"
+    prefix:   /article
+
+blog_category:
+    resource: "@BlogBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+blog_parameters:
+    resource: "@BlogBundle/Resources/config/routing/blog.yml"
+    prefix:   /blog
+
+admin:
+    path:     /admin
+    defaults: { _controller: "BlogBundle:Default:admin" }

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% for entity in blog %}{{ entity.name }}{% endfor %}{% endblock %}
+{% block navbar %}
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a href="{{ path('homepage') }}" class="blog-nav-item active">Accueil</a>
+                <div class="right-nav">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if is_granted('ROLE_ADMIN') %}<a class="blog-nav-item" href="{{ path('admin') }}">Admin</a>{% endif %}
+
+                        <a class="blog-nav-item" href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a class="blog-nav-item" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </div>
+            </nav>
+
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        {% for entity in blog %}
+        <div class="blog-header">
+            <h1 class="blog-title">{{ entity.name }}</h1>
+            <p class="lead blog-description">{{ entity.description }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                {% for entity in article %}
+                <div class="blog-post">
+                    <h2 class="blog-post-title">{{ entity.name }}</h2>
+                    <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="#">{{ entity.author }}</a></p>
+                    <p><img src="{{ asset(entity.image) }}" alt="" /></p>
+
+                    {{ entity.content }}
+                </div><!-- /.blog-post -->
+                {% endfor %}
+            </div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset">
+                    <h4>About</h4>
+                    {% for entity in blog %}
+                    {{ entity.about }}
+                    {% endfor %}
+                </div>
+                <div class="sidebar-module">
+                    <h4>Catégories</h4>
+                    <ol class="list-unstyled">
+                        {% for entity in categorie %}
+                        <li><a href="#">{{ entity.name }}</a></li>
+                        {% endfor %}
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+

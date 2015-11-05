@@ -1,0 +1,17 @@
+blog:
+    path:     /
+    defaults: { _controller: "BlogBundle:Blog:show" }
+
+blog_show:
+    path:     /show
+    defaults: { _controller: "BlogBundle:Blog:show" }
+
+blog_edit:
+    path:     /edit
+    defaults: { _controller: "BlogBundle:Blog:edit" }
+
+blog_update:
+    path:     /update
+    defaults: { _controller: "BlogBundle:Blog:update" }
+    methods:  [POST, PUT]
+

@@ -1,0 +1,27 @@
+BlogBundle\Entity\Blog:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        subtitle:
+            type: string
+            length: 255
+        description:
+            type: text
+        about:
+            type: text
+        image:
+            type: string
+            length: 255
+        logo:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
