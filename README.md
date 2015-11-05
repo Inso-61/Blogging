@@ -41,3 +41,5 @@ Nouvel utilisateur :
 Promouvoir en Rôle Admin :
     
     php app/console fos:user:promote    
+    
+Renseigner : ROLE_ADMIN
