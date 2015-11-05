@@ -7,6 +7,7 @@ Reste encore des améliorations :
 - Gestion des utilisateurs
 - Gestion des commentaires
 - Améliorer le css
+- Intégrer TinyMCE sur l'édition des articles
 
 Installation : 
 --------------
