@@ -21,6 +21,8 @@ Installation des dépendances :
     
     composer install
     
+(Doc. installation de composer, dans le cas où il ne serait pas installé sur votre machine : https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)    
+    
 Mise à jour de la base :
     
     php app/console doctrine:schema:update --force
