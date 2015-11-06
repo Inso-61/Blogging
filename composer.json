@@ -1,6 +1,7 @@
 {
-    "name": "damien/blog",
-    "license": "proprietary",
+    "name": "inso-61/Blogging",
+    "license": "open-source",
+    "description": "très léger moteur de blog",
     "type": "project",
     "autoload": {
         "psr-4": {

@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use BlogBundle\Entity\Article;
-use BlogBundle\Form\ArticleType;
+use BlogBundle\Form\Type\ArticleType;
 
 /**
  * Article controller.

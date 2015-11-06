@@ -4,7 +4,7 @@ namespace BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BlogBundle\Entity\Blog;
-use BlogBundle\Form\BlogType;
+use BlogBundle\Form\Type\BlogType;
 
 class BlogController extends Controller
 {

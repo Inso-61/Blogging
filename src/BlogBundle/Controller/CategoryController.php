@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use BlogBundle\Entity\Category;
-use BlogBundle\Form\CategoryType;
+use BlogBundle\Form\Type\CategoryType;
 
 /**
  * Category controller.
