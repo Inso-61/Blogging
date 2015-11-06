@@ -29,6 +29,14 @@ class CategoryController extends Controller
             'entities' => $entities,
         ));
     }
+
+    public function articleAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('BlogBundle:Article')->findAll();
+        return $this->render('BlogBundle:Category:article.html.twig', array(
+            'entities' => $entities, 'id' => $id,
+        ));
+    }
     /**
      * Creates a new Category entity.
      *

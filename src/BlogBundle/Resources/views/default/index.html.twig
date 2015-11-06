@@ -55,7 +55,7 @@
                     <h4>Catégories</h4>
                     <ol class="list-unstyled">
                         {% for entity in categorie %}
-                        <li><a href="#">{{ entity.name }}</a></li>
+                        <li><a href="{{ path('category') }}{{ entity.name }}/article">{{ entity.name }}</a></li>
                         {% endfor %}
                     </ol>
                 </div>

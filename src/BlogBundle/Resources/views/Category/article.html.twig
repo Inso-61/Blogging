@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+{% block navbar %}
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a href="{{ path('homepage') }}" class="blog-nav-item">Accueil</a>
+                <div class="right-nav">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if is_granted('ROLE_ADMIN') %}<a class="blog-nav-item active" href="{{ path('admin') }}">Admin</a>{% endif %}
+
+                        <a class="blog-nav-item" href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a class="blog-nav-item active" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </div>
+            </nav>
+
+        </div>
+    </div>
+{% endblock %}
+{% block body -%}
+<div class="container">
+    {% for entity in entities %}
+        {% if entity.categorie == id %}
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{ entity.name }}</h2>
+                <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="#">{{ entity.author }}</a></p>
+                <p><img src="{{ asset(entity.image) }}" alt="" /></p>
+
+                {{ entity.content }}
+            </div><!-- /.blog-post -->
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

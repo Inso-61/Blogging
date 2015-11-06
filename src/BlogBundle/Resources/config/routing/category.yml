@@ -6,6 +6,10 @@ category_show:
     path:     /{id}/show
     defaults: { _controller: "BlogBundle:Category:show" }
 
+category_show_article:
+    path:     /{id}/article
+    defaults: { _controller: "BlogBundle:Category:article" }
+
 category_new:
     path:     /new
     defaults: { _controller: "BlogBundle:Category:new" }
