@@ -8,7 +8,7 @@ Reste encore des améliorations :
 - Gestion des commentaires
 - Améliorer le css
 - Intégrer TinyMCE sur l'édition des articles
-- Classer les articles par catégories
+- Classer les articles par catégories [OK !]
 - Définir un maximum d'articles par pages
 - Créer une page Contact
 
