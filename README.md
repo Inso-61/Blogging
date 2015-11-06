@@ -12,6 +12,8 @@ Reste encore des améliorations :
 - Définir un maximum d'articles par pages
 - Créer une page Contact
 
+Poster une issue : https://github.com/Inso-61/Blogging/issues
+
 Installation : 
 --------------
 
