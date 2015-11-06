@@ -3,16 +3,8 @@ Blogging
 
 Application Symfony2 pour créer un blog.
 
-Reste encore des améliorations :
-- Gestion des utilisateurs
-- Gestion des commentaires
-- Améliorer le css
-- Intégrer TinyMCE sur l'édition des articles
-- Classer les articles par catégories [OK !]
-- Définir un maximum d'articles par pages
-- Créer une page Contact
-
-Poster une issue : https://github.com/Inso-61/Blogging/issues
+Améliorations bugs etc... :
+ https://github.com/Inso-61/Blogging/issues
 
 Installation : 
 --------------
