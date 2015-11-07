@@ -2,6 +2,10 @@ article:
     path:     /
     defaults: { _controller: "BlogBundle:Article:index" }
 
+article_article:
+    path:     /{id}/article
+    defaults: { _controller: "BlogBundle:Article:article" }
+
 article_show:
     path:     /{id}/show
     defaults: { _controller: "BlogBundle:Article:show" }

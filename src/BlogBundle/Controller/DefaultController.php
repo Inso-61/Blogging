@@ -17,6 +17,7 @@ class DefaultController extends Controller
         $entities_article = $em->getRepository('BlogBundle:Article')->findAll();
         $entities_categorie = $em->getRepository('BlogBundle:Category')->findAll();
         $entities_blog = $em->getRepository('BlogBundle:Blog')->findAll();
+
         return $this->render('BlogBundle:default:index.html.twig', array('article' => $entities_article, 'categorie' => $entities_categorie, 'blog' => $entities_blog));
     }
 

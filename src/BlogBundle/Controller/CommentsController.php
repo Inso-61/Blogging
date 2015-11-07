@@ -5,50 +5,37 @@ namespace BlogBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use BlogBundle\Entity\Article;
-use BlogBundle\Form\Type\ArticleType;
+use BlogBundle\Entity\Comments;
+use BlogBundle\Form\CommentsType;
 
 /**
- * Article controller.
+ * Comments controller.
  *
  */
-class ArticleController extends Controller
+class CommentsController extends Controller
 {
 
     /**
-     * Lists all Article entities.
+     * Lists all Comments entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BlogBundle:Article')->findAll();
+        $entities = $em->getRepository('BlogBundle:Comments')->findAll();
 
-        return $this->render('BlogBundle:Article:index.html.twig', array(
+        return $this->render('BlogBundle:Comments:index.html.twig', array(
             'entities' => $entities,
         ));
-    }
-
-    public function articleAction($id){
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('BlogBundle:Article')->findAll($id);
-        $entities_comments = $em->getRepository('BlogBundle:Comments')->findAll($id);
-
-        return $this->render('BlogBundle:Article:article.html.twig', array(
-            'entities' => $entities,
-            'comments' => $entities_comments,
-            'id' => $id,
-        ));
-
     }
     /**
-     * Creates a new Article entity.
+     * Creates a new Comments entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Article();
+        $entity = new Comments();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -57,26 +44,26 @@ class ArticleController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('article_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('comments_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('BlogBundle:Article:new.html.twig', array(
+        return $this->render('BlogBundle:Comments:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Article entity.
+     * Creates a form to create a Comments entity.
      *
-     * @param Article $entity The entity
+     * @param Comments $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Article $entity)
+    private function createCreateForm(Comments $entity)
     {
-        $form = $this->createForm(new ArticleType(), $entity, array(
-            'action' => $this->generateUrl('article_create'),
+        $form = $this->createForm(new CommentsType(), $entity, array(
+            'action' => $this->generateUrl('comments_create'),
             'method' => 'POST',
         ));
 
@@ -86,60 +73,60 @@ class ArticleController extends Controller
     }
 
     /**
-     * Displays a form to create a new Article entity.
+     * Displays a form to create a new Comments entity.
      *
      */
     public function newAction()
     {
-        $entity = new Article();
+        $entity = new Comments();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('BlogBundle:Article:new.html.twig', array(
+        return $this->render('BlogBundle:Comments:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Article entity.
+     * Finds and displays a Comments entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BlogBundle:Article')->find($id);
+        $entity = $em->getRepository('BlogBundle:Comments')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Article entity.');
+            throw $this->createNotFoundException('Unable to find Comments entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BlogBundle:Article:show.html.twig', array(
+        return $this->render('BlogBundle:Comments:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Article entity.
+     * Displays a form to edit an existing Comments entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BlogBundle:Article')->find($id);
+        $entity = $em->getRepository('BlogBundle:Comments')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Article entity.');
+            throw $this->createNotFoundException('Unable to find Comments entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BlogBundle:Article:edit.html.twig', array(
+        return $this->render('BlogBundle:Comments:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -147,16 +134,16 @@ class ArticleController extends Controller
     }
 
     /**
-    * Creates a form to edit a Article entity.
+    * Creates a form to edit a Comments entity.
     *
-    * @param Article $entity The entity
+    * @param Comments $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Article $entity)
+    private function createEditForm(Comments $entity)
     {
-        $form = $this->createForm(new ArticleType(), $entity, array(
-            'action' => $this->generateUrl('article_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new CommentsType(), $entity, array(
+            'action' => $this->generateUrl('comments_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -165,31 +152,37 @@ class ArticleController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Article entity.
+     * Edits an existing Comments entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BlogBundle:Article')->find($id);
+
+        $entity = $em->getRepository('BlogBundle:Comments')->find($id);
+
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Article entity.');
+            throw $this->createNotFoundException('Unable to find Comments entity.');
         }
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
+
         if ($editForm->isValid()) {
             $em->flush();
-            return $this->redirect($this->generateUrl('article_edit', array('id' => $id)));
+
+            return $this->redirect($this->generateUrl('comments_edit', array('id' => $id)));
         }
-        return $this->render('BlogBundle:Article:edit.html.twig', array(
+
+        return $this->render('BlogBundle:Comments:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Article entity.
+     * Deletes a Comments entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -199,21 +192,21 @@ class ArticleController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BlogBundle:Article')->find($id);
+            $entity = $em->getRepository('BlogBundle:Comments')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Article entity.');
+                throw $this->createNotFoundException('Unable to find Comments entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('article'));
+        return $this->redirect($this->generateUrl('comments'));
     }
 
     /**
-     * Creates a form to delete a Article entity by id.
+     * Creates a form to delete a Comments entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -222,7 +215,7 @@ class ArticleController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('article_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('comments_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
