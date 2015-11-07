@@ -24,6 +24,7 @@
 {% block body %}
 <div class="container blog-main">
     {% for entity in entities %}
+        {% if entity.id == id %}
         <div class="blog-post">
             <h2 class="blog-post-title">{{ entity.name }}</h2>
             <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="#">{{ entity.author }}</a></p>
@@ -32,21 +33,24 @@
             <p>[ <a href="{{ path('article') }}{{ entity.id }}/article/create_comments">Ajouter un commentaire</a> ] - [ <a href="{{ path('homepage') }}">Retour à l'accueil</a> ]</p>
 
         </div><!-- /.blog-post -->
+        {% endif %}
     {% endfor %}
 
     {% for entity_comments in comments %}
-    <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ entity_comments.objet }}</h3>
-            </div>
-            <div class="panel-body">
-                <p>{{ entity_comments.commentaire }}</p>
-                <hr />
-                Par <a href="#">{{ entity_comments.user }}</a>, le {{ entity_comments.date|date('Y-m-d H:i:s') }}
+        {% if entity_comments.article == id %}
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ entity_comments.objet }}</h3>
+                </div>
+                <div class="panel-body">
+                    <p>{{ entity_comments.commentaire }}</p>
+                    <hr />
+                    Par <a href="#">{{ entity_comments.user }}</a>, le {{ entity_comments.date|date('Y-m-d H:i:s') }}
+                </div>
             </div>
         </div>
-    </div>
+        {% endif %}
     {% endfor %}
 </div>
 
