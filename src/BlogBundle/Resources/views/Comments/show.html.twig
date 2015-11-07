@@ -1,48 +1,78 @@
 {% extends '::base.html.twig' %}
+{% block navbar %}
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a href="{{ path('homepage') }}" class="blog-nav-item">Accueil</a>
+                <div class="right-nav">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if is_granted('ROLE_ADMIN') %}<a class="blog-nav-item active" href="{{ path('admin') }}">Admin</a>{% endif %}
 
+                        <a class="blog-nav-item" href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a class="blog-nav-item active" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </div>
+            </nav>
+
+        </div>
+    </div>
+{% endblock %}
 {% block body -%}
-    <h1>Comments</h1>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Commentaires</h3>
+        </div>
+        <div class="panel-body">
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Objet</th>
-                <td>{{ entity.objet }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire</th>
-                <td>{{ entity.commentaire }}</td>
-            </tr>
-            <tr>
-                <th>Article</th>
-                <td>{{ entity.article }}</td>
-            </tr>
-            <tr>
-                <th>User</th>
-                <td>{{ entity.user }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <table class="record_properties">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ entity.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Objet</th>
+                            <td>{{ entity.objet }}</td>
+                        </tr>
+                        <tr>
+                            <th>Commentaire</th>
+                            <td>{{ entity.commentaire }}</td>
+                        </tr>
+                        <tr>
+                            <th>Article</th>
+                            <td>{{ entity.article }}</td>
+                        </tr>
+                        <tr>
+                            <th>User</th>
+                            <td>{{ entity.user }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('comments') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('comments_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                    <ul class="record_actions">
+                <li>
+                    <a href="{{ path('comments') }}">
+                        Back to the list
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('comments_edit', { 'id': entity.id }) }}">
+                        Edit
+                    </a>
+                </li>
+                <li>{{ form(delete_form) }}</li>
+            </ul>
+         </div>
+    </div>
+</div>
 {% endblock %}

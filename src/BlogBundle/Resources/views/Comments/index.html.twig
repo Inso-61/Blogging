@@ -1,49 +1,84 @@
 {% extends '::base.html.twig' %}
+{% block navbar %}
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a href="{{ path('homepage') }}" class="blog-nav-item">Accueil</a>
+                <div class="right-nav">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if is_granted('ROLE_ADMIN') %}<a class="blog-nav-item active" href="{{ path('admin') }}">Admin</a>{% endif %}
 
+                        <a class="blog-nav-item" href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a class="blog-nav-item active" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        <a class="blog-nav-item" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </div>
+            </nav>
+
+        </div>
+    </div>
+{% endblock %}
 {% block body -%}
-    <h1>Comments list</h1>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Liste des commentaires</h3>
+        </div>
+        <div class="panel-body">
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Objet</th>
-                <th>Commentaire</th>
-                <th>Article</th>
-                <th>User</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('comments_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.objet }}</td>
-                <td>{{ entity.commentaire }}</td>
-                <td>{{ entity.article }}</td>
-                <td>{{ entity.user }}</td>
-                <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
+            <table class="records_list">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Objet</th>
+                        <th>Commentaire</th>
+                        <th>Article</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('comments_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.objet }}</td>
+                        <td>{{ entity.commentaire }}</td>
+                        <td>{{ entity.article }}</td>
+                        <td>{{ entity.user }}</td>
+                        <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('comments_show', { 'id': entity.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('comments_edit', { 'id': entity.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
                 <ul>
+                <li>
+                    <a href="{{ path('comments_new') }}">
+                        Create a new entry
+                    </a>
+                </li>
                     <li>
-                        <a href="{{ path('comments_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('admin') }}">
+                            Retour à l'admin
+                        </a>
                     </li>
-                    <li>
-                        <a href="{{ path('comments_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('comments_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+            </ul>
+       </div>
+    </div>
+</div>
     {% endblock %}
