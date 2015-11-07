@@ -37,7 +37,7 @@
                 {% for entity in article %}
                 <div class="blog-post">
                     <h2 class="blog-post-title">{{ entity.name }}</h2>
-                    <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="#">{{ entity.author }}</a></p>
+                    <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="{{ path('profil') }}/{{ entity.author }}">{{ entity.author }}</a></p>
                     {% if entity.image != "" %}
                     <p><img src="{{ asset(entity.image) }}" alt="" /></p>
                     {% else %}
@@ -49,9 +49,10 @@
             </div>
             <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
                 <div class="sidebar-module sidebar-module-inset">
-                    <h4>About</h4>
+                    <h4>A propos</h4>
                     {% for entity in blog %}
-                    {{ entity.about }}
+                    <p>{% if entity.image != "" %}<img src="{{ asset(entity.image) }}" alt="" />{% endif %}</p>
+                    <p>{{ entity.about }}</p>
                     {% endfor %}
                 </div>
                 <div class="sidebar-module">

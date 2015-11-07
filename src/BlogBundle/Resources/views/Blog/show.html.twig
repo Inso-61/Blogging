@@ -76,14 +76,8 @@
         </div>
     </div>
     {% else %}
-<div class="container">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <h3 class="panel-title">Accès interdit !</h3>
-            </div>
-            <div class="panel-body">
-                Vous n'avez pas les autorisations nécessaires !
-            </div>
-        </div></div>
+        <div class="container">
+            <div class="alert alert-danger"><strong>Accès interdit !</strong> Vous n'avez pas les autorisations nécessaires !</div>
+        </div>
     {% endif %}
 {% endblock %}

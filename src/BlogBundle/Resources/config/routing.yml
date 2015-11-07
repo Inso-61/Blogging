@@ -17,3 +17,10 @@ blog_parameters:
 admin:
     path:     /admin
     defaults: { _controller: "BlogBundle:Default:admin" }
+
+profil:
+    path:     /profil
+
+profil_show:
+    path:     /profil/{id}
+    defaults: { _controller: "UserBundle:Profil:index" }

@@ -36,22 +36,25 @@
         {% endif %}
     {% endfor %}
 
+
+</div>
+    <div class="container">
+    <h2>Liste des commentaires</h2>
     {% for entity_comments in comments %}
         {% if entity_comments.article == id %}
-        <div class="container">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ entity_comments.objet }}</h3>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ entity_comments.objet }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ entity_comments.commentaire }}</p>
+                        <hr />
+                        Par <a href="{{ path('profil') }}/{{ entity_comments.user }}">{{ entity_comments.user }}</a>, le {{ entity_comments.date|date('Y-m-d H:i:s') }}
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <p>{{ entity_comments.commentaire }}</p>
-                    <hr />
-                    Par <a href="#">{{ entity_comments.user }}</a>, le {{ entity_comments.date|date('Y-m-d H:i:s') }}
-                </div>
-            </div>
-        </div>
+
         {% endif %}
     {% endfor %}
-</div>
-
+    </div>
 {% endblock %}

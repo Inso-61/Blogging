@@ -23,6 +23,7 @@
     </div>
 {% endblock %}
 {% block body -%}
+    {% if is_granted('ROLE_ADMIN') %}
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -43,4 +44,9 @@
         </div>
     </div>
 </div>
+    {% else %}
+        <div class="container">
+            <div class="alert alert-danger"><strong>Accès interdit !</strong> Vous n'avez pas les autorisations nécessaires !</div>
+        </div>
+    {% endif %}
 {% endblock %}
