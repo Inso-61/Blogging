@@ -1,0 +1,23 @@
+BlogBundle\Entity\Comments:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        objet:
+            type: string
+            length: 255
+        commentaire:
+            type: text
+        article:
+            type: integer
+        user:
+            type: string
+            length: 255
+        date:
+            type: datetime
+    lifecycleCallbacks: {  }
