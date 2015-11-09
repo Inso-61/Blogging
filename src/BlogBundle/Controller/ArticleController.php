@@ -2,6 +2,7 @@
 
 namespace BlogBundle\Controller;
 
+use BlogBundle\Entity\Comments;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -14,7 +15,6 @@ use BlogBundle\Form\Type\ArticleType;
  */
 class ArticleController extends Controller
 {
-
     /**
      * Lists all Article entities.
      *
@@ -31,14 +31,52 @@ class ArticleController extends Controller
     }
 
     public function articleAction($id){
+
+        $comment = new Comments();
+        // On génère le formulaire
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $comment);
+        $formBuilder
+            ->add('objet', 'text')
+            ->add('commentaire', 'textarea')
+            ->add('article', 'hidden')
+            ->add('envoyer', 'submit')
+            ->add('user', 'hidden')
+            ->add('date', 'hidden');
+
+        $form = $formBuilder->getForm();
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            // À partir de maintenant, les variables contiennent les valeurs entrées dans le formulaire par le visiteur
+            $form->bind($request);
+
+            // On vérifie que les valeurs entrées sont correctes
+            if ($form->isValid()) {
+                // On enregistre notre objet dans la base de données
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->flush();
+
+            }
+        }
+        // On récupère les données de l'article et les commentaires
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('BlogBundle:Article')->findAll($id);
         $entities_comments = $em->getRepository('BlogBundle:Comments')->findAll($id);
 
+        // récupère le nom d'utilisateur
+        $user = $this->container->get('security.context')->getToken()->getUser()->getUsername();
+
+        // On retourne les données sur la vue
         return $this->render('BlogBundle:Article:article.html.twig', array(
             'entities' => $entities,
             'comments' => $entities_comments,
             'id' => $id,
+            'form' => $form->createView(),
+            'user' => $user,
+            'date' => date("Y-m-d H:i:s"),
         ));
 
     }

@@ -19,5 +19,6 @@ BlogBundle\Entity\Comments:
             type: string
             length: 255
         date:
-            type: datetime
+            type: string
+            length: 255
     lifecycleCallbacks: {  }

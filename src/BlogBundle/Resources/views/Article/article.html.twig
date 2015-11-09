@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block navbar %}
-    <div class="blog-masthead">
+    <div class="blog-masthead" xmlns="http://www.w3.org/1999/html">
         <div class="container">
             <nav class="blog-nav">
                 <a href="{{ path('homepage') }}" class="blog-nav-item">Accueil</a>
@@ -56,5 +56,31 @@
 
         {% endif %}
     {% endfor %}
+        <h2>Ecrire un commentaire</h2>
+        {{ form_start(form) }}
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>
+                        <div class="input-group">
+                        {{ form_errors(form.objet) }}
+                        <span class="input-group-addon" id="basic-addon1">Objet</span>
+                        {{ form_widget(form.objet, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </p>
+                    <div class="input-group input-group-lg">
+                        {{ form_errors(form.commentaire) }}
+                        {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }}
+                        <div class="input-group-btn">
+                            {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{ form_row(form.date, {'attr': {'value': date }}) }}
+        {{ form_row(form.user, {'attr': {'value': user }}) }}
+        {{ form_row(form.article, {'attr': {'value': id}}) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
     </div>
 {% endblock %}

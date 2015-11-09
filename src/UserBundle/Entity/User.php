@@ -16,6 +16,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    protected $username;
 
     public function __construct()
     {
