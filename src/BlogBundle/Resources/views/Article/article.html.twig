@@ -28,7 +28,10 @@
         <div class="blog-post">
             <h2 class="blog-post-title">{{ entity.name }}</h2>
             <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="#">{{ entity.author }}</a></p>
-            <p><img src="{{ asset(entity.image) }}" alt="" /></p>
+            {% if entity.image != "" %}
+                <p><img src="{{ asset(entity.image) }}" alt="" /></p>
+            {% else %}
+            {% endif %}
             <p>{{ entity.content }}</p>
             <p>[ <a href="#comment">Ajouter un commentaire</a> ] - [ <a href="{{ path('homepage') }}">Retour à l'accueil</a> ]</p>
 
@@ -57,6 +60,7 @@
         {% endif %}
     {% endfor %}
         <div id="comment"></div><br />
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <h2>Ecrire un commentaire</h2><hr />
         {{ form_start(form) }}
 
@@ -84,4 +88,5 @@
         {{ form_rest(form) }}
         {{ form_end(form) }}
     </div>
+    {% endif %}
 {% endblock %}

@@ -66,8 +66,15 @@ class ArticleController extends Controller
         $entities = $em->getRepository('BlogBundle:Article')->findAll($id);
         $entities_comments = $em->getRepository('BlogBundle:Comments')->findAll($id);
 
-        // récupère le nom d'utilisateur
-        $user = $this->container->get('security.context')->getToken()->getUser()->getUsername();
+        // si on est au moins utilisateur
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            // si y'a pas d'utilisateur c'est null
+            $user = null;
+        } else {
+            // sinon on récupère le nom d'utilisateur
+            $user = $this->container->get('security.context')->getToken()->getUser()->getUsername();
+        }
+
 
         // On retourne les données sur la vue
         return $this->render('BlogBundle:Article:article.html.twig', array(

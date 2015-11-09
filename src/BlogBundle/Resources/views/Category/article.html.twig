@@ -29,7 +29,10 @@
             <div class="blog-post">
                 <h2 class="blog-post-title">{{ entity.name }}</h2>
                 <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="#">{{ entity.author }}</a></p>
-                <p><img src="{{ asset(entity.image) }}" alt="" /></p>
+                {% if entity.image != "" %}
+                    <p><img src="{{ asset(entity.image) }}" alt="" /></p>
+                {% else %}
+                {% endif %}
 
                 <p>{{ entity.content| truncate(200, false, '...') }}</p>
                 <a href="{{ path('article') }}{{ entity.id }}/article">Lire la suite</a></p>
