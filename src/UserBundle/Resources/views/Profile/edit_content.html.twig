@@ -4,12 +4,28 @@
         <div class="panel-heading">Modifier mon profil</div>
         <div class="panel-body">
             <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-                {{ form_widget(form) }}
+
+                <div class="form-group">
+                    <label for="password">Mot de passe actuel :</label>
+                    {{ form_widget(form.current_password, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe actuel' } }) }}
+                    {{ form_errors(form.current_password) }}
+                </div>
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur :</label>
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Nom d\'utilisateur' } }) }}
+                    {{ form_errors(form.username) }}
+                </div>
+                <div class="form-group">
+                    <label for="email">Adresse E-mail :</label>
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse E-mail' } }) }}
+                    {{ form_errors(form.email) }}
+                </div>
                 <div>
-                    <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+                    <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
                 </div>
                 <hr />
                 <p><a href="{{ path('fos_user_profile_show') }}">Retour à mon profil</a></p>
+                {{ form_rest(form) }}
             </form>
         </div>
     </div>

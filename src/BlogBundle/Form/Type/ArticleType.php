@@ -22,7 +22,7 @@ class ArticleType extends AbstractType
             ->add('categorie', 'text', array('label' => 'Catégorie', 'attr' => array(
                 'class' => 'form-control')) )
             ->add('date', 'date', array('label' => 'Date de mise en ligne', 'attr' => array(
-                'class' => 'form-control')) )
+                'class' => '')) )
             ->add('image', 'text', array('label' => 'Image associé', 'attr' => array(
                 'class' => 'form-control')) )
             ->add('author', 'text', array('label' => 'Auteur', 'attr' => array(

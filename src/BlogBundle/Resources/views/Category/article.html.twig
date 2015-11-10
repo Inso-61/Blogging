@@ -34,7 +34,7 @@
                 {% else %}
                 {% endif %}
 
-                <p>{{ entity.content| truncate(200, false, '...') }}</p>
+                <p>{% autoescape %}{{ entity.content| truncate(200, false, '...')|raw }}{% endautoescape %}</p>
                 <a href="{{ path('article') }}{{ entity.id }}/article">Lire la suite</a></p>
             </div><!-- /.blog-post -->
         {% endif %}

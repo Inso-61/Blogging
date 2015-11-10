@@ -40,7 +40,6 @@
                     <p class="blog-post-meta">{{ entity.date|date('Y-m-d H:i:s') }} by <a href="{{ path('profil') }}/{{ entity.author }}">{{ entity.author }}</a></p>
                     {% if entity.image != "" %}
                     <p><img src="{{ asset(entity.image) }}" alt="" /></p>
-                    {% else %}
                     {% endif %}
                     <p>{% autoescape %}{{ entity.content| truncate(200, false, '...')|raw }}{% endautoescape %}<br />
                     <a href="{{ path('article') }}{{ entity.id }}/article">Lire la suite</a></p>

@@ -14,6 +14,12 @@
             <p><a href="{{ path('fos_user_profile_edit') }}">Editer mon profil</a></p>
         </div>
     </div>
+    {% if is_granted('ROLE_ADMIN') %}<div class="panel panel-default">
+        <div class="panel-heading">Administration</div>
+        <div class="panel-body">
+            <a href="{{ path('admin') }}">Voir le dashboard admin</a>
+        </div>
+        </div>{% endif %}
 
 
 </div>
