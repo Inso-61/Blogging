@@ -31,16 +31,44 @@
             </div>
             <div class="panel-body">
 
-        {{ form(edit_form) }}
 
-            <ul class="record_actions">
-        <li>
-            <a href="{{ path('article') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul></div></div></div>
+        <table width="100%" cellspacing="2" cellpadding="0" border="0">
+         <tr>
+             <td>
+                 {{ form_start(edit_form) }}
+                 {{ form_row(edit_form.name) }}
+                 {{ form_row(edit_form.content) }}
+                 {{ form_row(edit_form.categorie) }}
+                 {{ form_row(edit_form.date) }}
+                 {{ form_row(edit_form.image) }}
+                 {{ form_row(edit_form.author) }}
+                <hr />
+                 <table cellspacing="2" cellpadding="0" border="0">
+                     <tr>
+                         <td>
+                             {{ form_row(edit_form.submit) }}
+                             {{ form_rest(edit_form) }}
+                             {{ form_end(edit_form) }}
+
+                         </td>
+                         <td>&nbsp;<a class="btn btn-primary" href="{{ path('article') }}">
+                                 Retour à la liste
+                             </a>
+                         </td>
+                         <td>
+                             {{ form(delete_form) }}
+                         </td>
+                     </tr>
+                 </table>
+
+             </td>
+
+
+         </tr>
+                </table>
+
+
+            </div></div></div>
     {% else %}
         <div class="container">
             <div class="alert alert-danger"><strong>Accès interdit !</strong> Vous n'avez pas les autorisations nécessaires !</div>

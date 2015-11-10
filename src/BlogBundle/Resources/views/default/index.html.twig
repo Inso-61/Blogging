@@ -42,7 +42,7 @@
                     <p><img src="{{ asset(entity.image) }}" alt="" /></p>
                     {% else %}
                     {% endif %}
-                    <p>{{ entity.content| truncate(200, false, '...') }}<br />
+                    <p>{% autoescape %}{{ entity.content| truncate(200, false, '...')|raw }}{% endautoescape %}<br />
                     <a href="{{ path('article') }}{{ entity.id }}/article">Lire la suite</a></p>
                 </div><!-- /.blog-post -->
                 {% endfor %}
@@ -52,7 +52,7 @@
                     <h4>A propos</h4>
                     {% for entity in blog %}
                     <p>{% if entity.image != "" %}<img src="{{ asset(entity.image) }}" alt="" />{% endif %}</p>
-                    <p>{{ entity.about }}</p>
+                    <p>{% autoescape %}{{ entity.about|raw }}{% endautoescape %}</p>
                     {% endfor %}
                 </div>
                 <div class="sidebar-module">

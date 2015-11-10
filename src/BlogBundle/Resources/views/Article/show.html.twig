@@ -38,16 +38,16 @@
                     <td>{{ entity.id }}</td>
                 </tr>
                 <tr>
-                    <th>Name</th>
+                    <th>Nom</th>
                     <td>{{ entity.name }}</td>
                 </tr>
                 <tr>
-                    <th>Categorie</th>
+                    <th>Catégorie</th>
                     <td>{{ entity.categorie }}</td>
                 </tr>
                 <tr>
-                    <th>Content</th>
-                    <td>{{ entity.content }}</td>
+                    <th>Contenu</th>
+                    <td>{% autoescape %}{{ entity.content|raw }}{% endautoescape %}</td>
                 </tr>
                 <tr>
                     <th>Date</th>
@@ -55,10 +55,10 @@
                 </tr>
                 <tr>
                     <th>Image</th>
-                    <td>{{ entity.image }}</td>
+                    <td><img src="{{ asset(entity.image) }}" alt="" /> </td>
                 </tr>
                 <tr>
-                    <th>Author</th>
+                    <th>Auteur</th>
                     <td>{{ entity.author }}</td>
                 </tr>
             </tbody>

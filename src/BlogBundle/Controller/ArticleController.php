@@ -205,7 +205,8 @@ class ArticleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array(
+            'class' => 'btn btn-success') ));
 
         return $form;
     }
@@ -269,7 +270,11 @@ class ArticleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('article_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('Supprimer', 'submit')
+            ->add('Supprimer', 'submit' ,array(
+                'attr' => array(
+                    'class' => 'btn btn-danger'
+                )
+            ))
             ->getForm()
         ;
     }

@@ -32,7 +32,7 @@
                 <p><img src="{{ asset(entity.image) }}" alt="" /></p>
             {% else %}
             {% endif %}
-            <p>{{ entity.content }}</p>
+            <p>{% autoescape %}{{ entity.content|raw }}{% endautoescape %}</p>
             <p>[ <a href="#comment">Ajouter un commentaire</a> ] - [ <a href="{{ path('homepage') }}">Retour à l'accueil</a> ]</p>
 
         </div><!-- /.blog-post -->
