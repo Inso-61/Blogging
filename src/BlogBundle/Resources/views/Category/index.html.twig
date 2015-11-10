@@ -32,11 +32,11 @@
             <div class="panel-body">
 
 
-        <table class="records_list">
+        <table class="table table-hover table-bordered records_list">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
+                    <th>#</th>
+                    <th>Nom</th>
                     <th>Description</th>
                     <th>Actions</th>
                 </tr>
@@ -48,33 +48,24 @@
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.description }}</td>
                     <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('category_show', { 'id': entity.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('category_edit', { 'id': entity.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                        <table border="0" cellpadding="2" cellspacing="0">
+                            <tr>
+                                <td><a class="btn btn-default" href="{{ path('category_show', { 'id': entity.id }) }}">Afficher</a></td>
+                                <td><a class="btn btn-default" href="{{ path('category_edit', { 'id': entity.id }) }}">Modifier</a></td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
-            <ul>
-            <li>
-                <a href="{{ path('category_new') }}">
-                    Create a new entry
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('admin') }}">
-                    Retour à l'admin
-                </a>
-            </li>
-
-        </ul></div></div></div>
+                <table border="0" cellpadding="2" cellspacing="0">
+                    <tr>
+                        <td><a class="btn btn-success" href="{{ path('category_new') }}">Créer une nouvelle catégorie</a></td>
+                        <td><a class="btn btn-primary" href="{{ path('admin') }}">Retour à l'admin</a></td>
+                    </tr>
+                </table>
+            </div></div></div>
     {% else %}
         <div class="container">
             <div class="alert alert-danger"><strong>Accès interdit !</strong> Vous n'avez pas les autorisations nécessaires !</div>

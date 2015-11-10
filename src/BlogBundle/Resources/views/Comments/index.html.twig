@@ -31,15 +31,15 @@
         </div>
         <div class="panel-body">
 
-            <table class="records_list">
+            <table class="table table-hover table-bordered records_list">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>#</th>
                         <th>Objet</th>
                         <th>Commentaire</th>
-                        <th>Article</th>
-                        <th>User</th>
-                        <th>Date</th>
+                        <th>Sur l'article</th>
+                        <th>L'utilisateur</th>
+                        <th>Date du post</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -53,32 +53,24 @@
                         <td>{{ entity.user }}</td>
                         <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('comments_show', { 'id': entity.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('comments_edit', { 'id': entity.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                            <table border="0" cellpadding="2" cellspacing="0">
+                                <tr>
+                                    <td><a class="btn btn-default" href="{{ path('comments_show', { 'id': entity.id }) }}">Afficher</a></td>
+                                    <td><a class="btn btn-default" href="{{ path('comments_edit', { 'id': entity.id }) }}">Modifier</a></td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            <table border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td><a class="btn btn-success" href="{{ path('comments_new') }}">Ajouter un nouveau commentaire</a></td>
+                    <td><a class="btn btn-primary" href="{{ path('admin') }}">Retour à l'admin</a></td>
+                </tr>
+            </table>
 
-                <ul>
-                <li>
-                    <a href="{{ path('comments_new') }}">
-                        Create a new entry
-                    </a>
-                </li>
-                    <li>
-                        <a href="{{ path('admin') }}">
-                            Retour à l'admin
-                        </a>
-                    </li>
-            </ul>
        </div>
     </div>
 </div>
