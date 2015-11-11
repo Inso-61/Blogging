@@ -30,15 +30,40 @@
                 <h3 class="panel-title">Edition paramètres du blog</h3>
             </div>
             <div class="panel-body">
-                {{ form(edit_form) }}
 
-                <ul class="record_actions">
-                    <li>
-                        <a href="{{ path('blog') }}">
-                            Back to the list
-                        </a>
-                    </li>
-                </ul></div></div></div>
+                <table width="100%" cellspacing="2" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            {{ form_start(edit_form) }}
+                            {{ form_row(edit_form.name) }}
+                            {{ form_row(edit_form.subtitle) }}
+                            {{ form_row(edit_form.description) }}
+                            {{ form_row(edit_form.about) }}
+                            {{ form_row(edit_form.image) }}
+                            {{ form_row(edit_form.logo) }}
+                            <hr />
+                            <table cellspacing="2" cellpadding="0" border="0">
+                                <tr>
+                                    <td>
+                                        {{ form_row(edit_form.submit) }}
+                                        {{ form_rest(edit_form) }}
+                                        {{ form_end(edit_form) }}
+
+                                    </td>
+                                    <td>&nbsp;<a class="btn btn-primary" href="{{ path('blog') }}">
+                                            Retour à la liste
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+
+
+                    </tr>
+                </table>
+
+                </div></div></div>
     {% else %}
         <div class="container">
             <div class="alert alert-danger"><strong>Accès interdit !</strong> Vous n'avez pas les autorisations nécessaires !</div>

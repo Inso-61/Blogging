@@ -15,13 +15,18 @@ class BlogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('subtitle')
-            ->add('description')
-            ->add('about')
-            ->add('image')
-            ->add('logo')
-        ;
+            ->add('name', 'text', array('label' => 'Nom du blog :', 'attr' => array(
+                'class' => 'form-control')))
+            ->add('subtitle', 'text', array('label' => 'Slogan :', 'attr' => array(
+                'class' => 'form-control')) )
+            ->add('description', 'textarea', array('label' => 'Description :', 'attr' => array(
+                'class' => 'form-control')) )
+            ->add('about', 'textarea', array('label' => 'A propos :', 'attr' => array(
+                'class' => 'tinymce')) )
+            ->add('image', 'text', array('label' => 'Image associé :', 'attr' => array(
+                'class' => 'form-control')) )
+            ->add('logo', 'text', array('label' => 'Logo du blog :', 'attr' => array(
+                'class' => 'form-control')) );
     }
     
     /**

@@ -30,7 +30,7 @@
                 <h3 class="panel-title">Administration Blog</h3>
             </div>
             <div class="panel-body">
-                <table class="record_properties">
+                <table class="table table-hover table-bordered record_properties">
                     <tbody>
                     <tr>
                         <th>Name</th>
@@ -46,7 +46,7 @@
                     </tr>
                     <tr>
                         <th>About</th>
-                        <td>{{ blog.about }}</td>
+                        <td>{% autoescape %}{{ blog.about|raw }}{% endautoescape %}</td>
                     </tr>
                     <tr>
                         <th>Image</th>
@@ -59,19 +59,13 @@
                     </tbody>
                 </table>
 
-                <ul class="record_actions">
-                    <li>
-                        <a href="{{ path('blog_edit') }}">
-                            Modifier les paramètres
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin') }}">
-                            Retour à l'admin
-                        </a>
-                    </li>
+                <table border="0" cellpadding="2" cellspacing="0">
+                    <tr>
+                        <td><a class="btn btn-success" href="{{ path('blog_edit') }}">Modifier les paramètres</a></td>
+                        <td><a class="btn btn-primary" href="{{ path('admin') }}">Retour à l'admin</a></td>
+                    </tr>
+                </table>
 
-                </ul>
             </div>
         </div>
     </div>

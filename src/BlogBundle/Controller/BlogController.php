@@ -61,7 +61,8 @@ class BlogController extends Controller
             'action' => $this->generateUrl('blog_update', array('id' => 1)),
             'method' => 'PUT',
         ));
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array(
+            'class' => 'btn btn-success') ));
         return $form;
     }
     /**
