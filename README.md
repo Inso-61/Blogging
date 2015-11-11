@@ -27,14 +27,15 @@ Création de la base :
     
     php app/console doctrine:database:create
     
-Mise à jour de la base :
-    
-    php app/console doctrine:schema:update --force
-    
 Droits d'écriture :
     
     sh bash/chmod.sh
     
+Mise à jour de la base :
+    
+    php app/console doctrine:schema:update --force
+    
+
 Créer un super utilisateur : 
 ----------------------------
 
