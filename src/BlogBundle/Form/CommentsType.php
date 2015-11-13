@@ -15,11 +15,16 @@ class CommentsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('objet')
-            ->add('commentaire')
-            ->add('article')
-            ->add('user')
-            ->add('date')
+            ->add('objet', 'text', array('label' => 'Objet', 'attr' => array(
+                'class' => 'form-control')))
+            ->add('commentaire', 'textarea', array('label' => 'Commentaire', 'attr' => array(
+                'class' => 'form-control')))
+            ->add('article', 'text', array('label' => 'Article', 'attr' => array(
+                'class' => 'form-control')))
+            ->add('user', 'text', array('label' => 'Utilisateur', 'attr' => array(
+                'class' => 'form-control')))
+            ->add('date', 'text', array('label' => 'Date', 'attr' => array(
+                'class' => 'form-control')))
         ;
     }
     

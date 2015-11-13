@@ -6,9 +6,9 @@ comments_show:
     path:     /{id}/show
     defaults: { _controller: "BlogBundle:Comments:show" }
 
-comments_new:
-    path:     /new
-    defaults: { _controller: "BlogBundle:Comments:new" }
+#comments_new:
+#    path:     /new
+#    defaults: { _controller: "BlogBundle:Comments:new" }
 
 comments_create:
     path:     /create

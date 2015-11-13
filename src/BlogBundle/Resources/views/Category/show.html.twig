@@ -46,20 +46,14 @@
                             </tr>
                         </tbody>
                     </table>
+                <table border="0" cellpadding="2" cellspacing="0">
+                    <tr>
+                        <td><a class="btn btn-primary" href="{{ path('category') }}">Retour à la liste</a></td>
+                        <td><a class="btn btn-success" href="{{ path('category_edit', { 'id': entity.id }) }}">Modifier la catégorie</a></td>
+                        <td>{{ form(delete_form) }}</td>
+                    </tr>
+                </table>
 
-                        <ul class="record_actions">
-                    <li>
-                        <a href="{{ path('category') }}">
-                            Back to the list
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('category_edit', { 'id': entity.id }) }}">
-                            Edit
-                        </a>
-                    </li>
-                    <li>{{ form(delete_form) }}</li>
-                </ul>
             </div>
         </div>
     </div>

@@ -30,15 +30,39 @@
                 <h3 class="panel-title">Créer un article</h3>
             </div>
             <div class="panel-body">
-        {{ form(form) }}
+                <table width="100%" cellspacing="2" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            {{ form_start(form) }}
+                            {{ form_row(form.name) }}
+                            {{ form_row(form.content, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_row(form.categorie) }}
+                            {{ form_row(form.date) }}
+                            {{ form_row(form.image) }}
+                            {{ form_row(form.author) }}
+                            <hr />
+                            <table cellspacing="2" cellpadding="0" border="0">
+                                <tr>
+                                    <td>
+                                        {{ form_row(form.submit) }}
+                                        {{ form_rest(form) }}
+                                        {{ form_end(form) }}
 
-            <ul class="record_actions">
-        <li>
-            <a href="{{ path('article') }}">
-                Back to the list
-            </a>
-        </li>
-    </ul></div></div></div>
+                                    </td>
+                                    <td>&nbsp;<a class="btn btn-primary" href="{{ path('article') }}">
+                                            Retour à la liste
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+
+
+                    </tr>
+                </table>
+
+            </div></div></div>
     {% else %}
         <div class="container">
             <div class="alert alert-danger"><strong>Accès interdit !</strong> Vous n'avez pas les autorisations nécessaires !</div>

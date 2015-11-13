@@ -60,19 +60,13 @@
                     </tbody>
                 </table>
 
-                    <ul class="record_actions">
-                <li>
-                    <a href="{{ path('comments') }}">
-                        Back to the list
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('comments_edit', { 'id': entity.id }) }}">
-                        Edit
-                    </a>
-                </li>
-                <li>{{ form(delete_form) }}</li>
-            </ul>
+            <table border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td><a class="btn btn-primary" href="{{ path('comments') }}">Retour à la liste</a></td>
+                    <td><a class="btn btn-success" href="{{ path('comments_edit', { 'id': entity.id }) }}">Modifier le commentaire</a></td>
+                    <td>{{ form(delete_form) }}</td>
+                </tr>
+            </table>
          </div>
     </div>
 </div>

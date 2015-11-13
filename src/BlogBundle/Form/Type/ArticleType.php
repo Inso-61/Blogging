@@ -18,7 +18,7 @@ class ArticleType extends AbstractType
             ->add('name', 'text', array('label' => 'Nom de l\'article', 'attr' => array(
         'class' => 'form-control')) )
             ->add('content', 'textarea', array('label' => 'Contenu', 'attr' => array(
-                'class' => 'tinymce')) )
+                'class' => 'tinymce', 'required' => false)) )
             ->add('categorie', 'text', array('label' => 'Catégorie', 'attr' => array(
                 'class' => 'form-control')) )
             ->add('date', 'date', array('label' => 'Date de mise en ligne', 'attr' => array(

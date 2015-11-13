@@ -76,7 +76,7 @@ class CommentsController extends Controller
      * Displays a form to create a new Comments entity.
      *
      */
-    public function newAction()
+    /**public function newAction()
     {
         $entity = new Comments();
         $form   = $this->createCreateForm($entity);
@@ -147,7 +147,7 @@ class CommentsController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-success')));
 
         return $form;
     }
@@ -217,7 +217,7 @@ class CommentsController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comments_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

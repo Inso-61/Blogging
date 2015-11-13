@@ -31,16 +31,32 @@
         </div>
         <div class="panel-body">
 
-            {{ form(edit_form) }}
+            <table width="100%" cellspacing="2" cellpadding="0" border="0">
+                <tr>
+                    <td>
+                        {{ form_start(edit_form) }}
+                        {{ form_row(edit_form.objet) }}
+                        {{ form_row(edit_form.commentaire) }}
+                        {{ form_row(edit_form.article) }}
+                        {{ form_row(edit_form.user) }}
+                        {{ form_row(edit_form.date) }}
 
-                <ul class="record_actions">
-            <li>
-                <a href="{{ path('comments') }}">
-                    Back to the list
-                </a>
-            </li>
-            <li>{{ form(delete_form) }}</li>
-        </ul>
+                        <hr />
+                        <table cellspacing="2" cellpadding="0" border="0">
+                            <tr>
+                                <td>
+                                    {{ form_row(edit_form.submit) }}
+                                    {{ form_rest(edit_form) }}
+                                    {{ form_end(edit_form) }}
+
+                                </td>
+                                <td>&nbsp;<a class="btn btn-primary" href="{{ path('comments') }}">Retour à la liste</a></td>
+                                <td>{{ form(delete_form) }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

@@ -75,7 +75,7 @@ class CategoryController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-success')));
 
         return $form;
     }
@@ -155,7 +155,7 @@ class CategoryController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-success')));
 
         return $form;
     }
@@ -225,7 +225,7 @@ class CategoryController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('category_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

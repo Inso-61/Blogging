@@ -30,16 +30,29 @@
                 <h3 class="panel-title">Edition catégorie</h3>
             </div>
             <div class="panel-body">
-        {{ form(edit_form) }}
+                <table width="100%" cellspacing="2" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            {{ form_start(edit_form) }}
+                            {{ form_row(edit_form.name) }}
+                            {{ form_row(edit_form.description) }}
+                            <hr />
+                            <table cellspacing="2" cellpadding="0" border="0">
+                                <tr>
+                                    <td>
+                                        {{ form_row(edit_form.submit) }}
+                                        {{ form_rest(edit_form) }}
+                                        {{ form_end(edit_form) }}
 
-            <ul class="record_actions">
-        <li>
-            <a href="{{ path('category') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul></div></div></div>
+                                    </td>
+                                    <td>&nbsp;<a class="btn btn-primary" href="{{ path('category') }}">Retour à la liste</a></td>
+                                     <td>{{ form(delete_form) }}</td>
+                                 </tr>
+                          </table>
+                    </td>
+                    </tr>
+                </table>
+          </div></div></div>
     {% else %}
     <div class="container">
         <div class="alert alert-danger"><strong>Accès interdit !</strong> Vous n'avez pas les autorisations nécessaires !</div>
