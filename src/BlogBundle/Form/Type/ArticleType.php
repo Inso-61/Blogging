@@ -19,13 +19,15 @@ class ArticleType extends AbstractType
         'class' => 'form-control')) )
             ->add('content', 'textarea', array('label' => 'Contenu', 'attr' => array(
                 'class' => 'tinymce', 'required' => false)) )
-            ->add('categorie', 'text', array('label' => 'Catégorie', 'attr' => array(
+            ->add('categorie', 'entity', array(
+                                    'label' => 'Catégorie',
+                                    'class' => 'BlogBundle:Category',
+                                    'property' => 'name',
+                                    'empty_value' => null,
+                                    'multiple' => false,
+                'attr' => array(
                 'class' => 'form-control')) )
-            ->add('date', 'date', array('label' => 'Date de mise en ligne', 'attr' => array(
-                'class' => '')) )
-            ->add('image', 'text', array('label' => 'Image associé', 'attr' => array(
-                'class' => 'form-control')) )
-            ->add('author', 'text', array('label' => 'Auteur', 'attr' => array(
+            ->add('image', 'text', array('label' => 'Image associé', 'required' => false, 'attr' => array(
                 'class' => 'form-control')) );
     }
     

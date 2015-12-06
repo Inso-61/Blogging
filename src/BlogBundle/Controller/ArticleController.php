@@ -99,6 +99,10 @@ class ArticleController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $entity->setDate(new \DateTime('now'));
+            $entity->setAuthor($this->getUser()->getUsername());
+
             $em->persist($entity);
             $em->flush();
 
@@ -205,7 +209,7 @@ class ArticleController extends Controller
             'action' => $this->generateUrl('article_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
+        //$form->add('date', 'date', array('label' => 'Date de mise en ligne', 'attr' => array('class' => '')) );
         $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array(
             'class' => 'btn btn-success') ));
 
@@ -226,6 +230,8 @@ class ArticleController extends Controller
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
+            $entity->setDate(new \DateTime('now'));
+            $entity->setAuthor($this->getUser()->getUsername());
             $em->flush();
             return $this->redirect($this->generateUrl('article_edit', array('id' => $id)));
         }
