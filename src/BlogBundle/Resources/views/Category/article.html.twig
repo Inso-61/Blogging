@@ -38,6 +38,8 @@
                 <a href="{{ path('article') }}{{ entity.id }}/article">Lire la suite</a></p>
             </div><!-- /.blog-post -->
         {% endif %}
+    {% else %}
+        <p>Pas d'articles pour le moment.</p>
     {% endfor %}
 </div>
 
