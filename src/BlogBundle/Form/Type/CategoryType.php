@@ -17,7 +17,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('name', 'text', array('label' => 'Nom de la catégorie', 'attr' => array(
                 'class' => 'form-control')) )
-            ->add('description', 'textarea', array('label' => 'Petite description', 'attr' => array(
+            ->add('description', 'textarea', array('label' => 'Petite description', 'required' => false, 'attr' => array(
                 'class' => 'form-control')) )
         ;
     }
