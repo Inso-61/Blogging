@@ -44,6 +44,8 @@
                     <p>{% autoescape %}{{ entity.content| truncate(200, false, '...')|raw }}{% endautoescape %}<br />
                     <a href="{{ path('article') }}{{ entity.id }}/article">Lire la suite</a></p>
                 </div><!-- /.blog-post -->
+                {% else %}
+                    <p>Pas encore d'articles !</p>
                 {% endfor %}
             </div>
             <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
@@ -52,6 +54,8 @@
                     {% for entity in blog %}
                     <p>{% if entity.image != "" %}<img src="{{ asset(entity.image) }}" alt="" />{% endif %}</p>
                     <p>{% autoescape %}{{ entity.about|raw }}{% endautoescape %}</p>
+                    {% else %}
+                    <p>Aucune description.</p>
                     {% endfor %}
                 </div>
                 <div class="sidebar-module">
@@ -59,6 +63,8 @@
                     <ol class="list-unstyled">
                         {% for entity in categorie %}
                         <li><a href="{{ path('category') }}{{ entity.name }}/article">{{ entity.name }}</a></li>
+                        {% else %}
+                            Pas de catégories pour le moment.
                         {% endfor %}
                     </ol>
                 </div>
