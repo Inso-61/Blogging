@@ -19,7 +19,8 @@ class ArticleType extends AbstractType
         'class' => 'form-control')) )
             ->add('content', 'textarea', array('label' => 'Contenu', 'attr' => array(
                 'class' => 'tinymce', 'required' => false)) )
-            ->add('categorie', 'text', array('label' => 'Catégorie', 'attr' => array(
+            ->add('categorie', 'entity', array('label' => 'Catégorie', 'class' => 'BlogBundle:Category',
+                'property' => 'name', 'multiple' => false, 'attr' => array(
                 'class' => 'form-control')) )
             ->add('date', 'date', array('label' => 'Date de mise en ligne', 'attr' => array(
                 'class' => '')) )
